@@ -5,6 +5,10 @@ node {
 	stage('Clone repository') {
 		checkout scm
 	}
+	
+	stage('Assign permission to docker') {
+		sh ("chmod 777 /var/run/docker.sock")		
+	}
 
 	stage('Build image') {
 		app = docker.build("${application}:${BUILD_NUMBER}")
