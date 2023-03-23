@@ -1,8 +1,5 @@
 pipeline {   
-  agent any  
-  environment {     
-    DOCKERHUB_CREDENTIALS= credentials('DockerHubCredentials')     
-  }    
+  agent any    
   stages {
 	  
     stage('Clone repository') {
@@ -18,11 +15,9 @@ pipeline {
     }
     stage('Login to Docker Hub') {         
       steps{ 
-	bash '''
-            #!/bin/bash
-            echo "hello world | echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
-         '''      
-	//sh 'echo $DOCKERHUB_CREDENTIALS_PSW |  docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                 
+	withCredentials([usernamePassword(credentialsId: 'DockerHubCredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+  		sh 'docker login -u $USERNAME -p $PASSWORD'
+	}               
 	echo 'Login Completed'                
       }           
     }               
