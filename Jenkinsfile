@@ -13,7 +13,7 @@ node {
 
 	stage('Build image') {
 		//app = docker.build("${application}:${BUILD_NUMBER}")
-		sh 'docker build -t ugaurav22/springbootapp:${BUILD_NUMBER}'	
+		sh 'docker build -t ugaurav22/springbootapp:${BUILD_NUMBER} .'	
 	}
 
     	stage('Push') {
