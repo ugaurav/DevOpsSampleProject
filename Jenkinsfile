@@ -3,7 +3,8 @@ pipeline {
   environment {     
     DOCKERHUB_CREDENTIALS= credentials('DockerHubCredentials')     
   }    
-  stages {         
+  stages {
+	  
     stage('Clone repository') {
 	    steps {
 		checkout scm
@@ -16,7 +17,11 @@ pipeline {
       }           
     }
     stage('Login to Docker Hub') {         
-      steps{                            
+      steps{ 
+	bash '''
+            #!/bin/bash
+            echo "hello world"
+         '''      
 	sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                 
 	echo 'Login Completed'                
       }           
