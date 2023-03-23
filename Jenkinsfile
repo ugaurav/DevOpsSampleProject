@@ -28,7 +28,7 @@ node {
 			}
     		}*/
 		withDockerRegistry([credentialsId:"DockerHubCredentials",url:"https://registry.hub.docker.com"]) {
-           		sh 'docker tag springbootapp:${BUILD_NUMBER} ugaurav22/springbootapp:${BUILD_NUMBER}"	
+           		sh 'docker tag springbootapp:${BUILD_NUMBER} ugaurav22/springbootapp:${BUILD_NUMBER}'	
 			sh 'docker push ugaurav22/${application}:${BUILD_NUMBER}'
 
        		 }
