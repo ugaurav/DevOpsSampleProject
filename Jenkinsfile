@@ -27,6 +27,9 @@ node {
 				app.push("latest")
 			}
     		}*/
+		withDockerRegistry([credentialsId:"DockerHubCredentials",url:"https://registry.hub.docker.com"]) {
+           			 app.push();
+       		 }
 	}	
 	stage('Deploy') {
 		sh ("docker run -d -p 81:8080 -v /var/log/:/var/log/ ${application}:${BUILD_NUMBER}")		
