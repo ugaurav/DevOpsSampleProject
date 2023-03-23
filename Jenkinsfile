@@ -12,7 +12,7 @@ node {
 	}
 
     	stage('Push') {
-		docker.withRegistry('ugaurav22', 'DockerHubCredentials') {
+		docker.withRegistry('https://hub.docker.com/repository/docker/ugaurav22', 'DockerHubCredentials') {
            			 app.push("${application}:${BUILD_NUMBER}")
             			app.push("latest")
        		 }
