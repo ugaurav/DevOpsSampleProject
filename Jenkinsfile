@@ -27,6 +27,7 @@ node {
 				app.push("latest")
 			}
     		}*/
+		sh 'docker logout'
 		withDockerRegistry([credentialsId:"DockerHubCredentials",url:"https://hub.docker.com/repositories/ugaurav22"]) {
            		sh 'docker tag springbootapp:${BUILD_NUMBER} ugaurav22/springbootapp:${BUILD_NUMBER}'	
 			sh 'docker push ugaurav22/springbootapp:${BUILD_NUMBER}'
