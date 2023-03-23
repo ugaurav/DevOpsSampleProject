@@ -7,7 +7,9 @@ node {
 	}
 	
 	stage('Assign permission to docker') {
-		sh ("chmod 777 /var/run/docker.sock")		
+		sh ("sudo su -")
+		sh ("chmod 777 /var/run/docker.sock")	
+		sh ("exit")
 	}
 
 	stage('Build image') {
