@@ -6,12 +6,6 @@ node {
 		checkout scm
 	}
 	
-	stage('Assign permission to docker') {
-		sh '''
-            		#!/bin/bash
-            		echo sudo su -;chmod 777 /var/run/docker.sock;exit
-         	'''
-	}
 
 	stage('Build image') {
 		app = docker.build("${application}:${BUILD_NUMBER}")
