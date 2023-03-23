@@ -28,8 +28,7 @@ node {
 			}
     		}*/
 		withDockerRegistry([credentialsId:"DockerHubCredentials",url:"https://registry.hub.docker.com"]) {
-           			 app.push("ugaurav22/${application}:${BUILD_NUMBER}");
-			         app.push("lastest")
+           			app.push()
        		 }
 	}	
 	stage('Deploy') {
