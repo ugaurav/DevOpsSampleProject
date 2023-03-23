@@ -7,8 +7,10 @@ pipeline {
   }    
   stages {         
     stage('Clone repository') {
+	    steps {
 		checkout scm
-}
+	    }	    
+     }
     stage('Build Docker Image') {         
       steps{                
 	sh 'sudo docker build -t ugaurav22/springbooapp:$BUILD_NUMBER .'           
