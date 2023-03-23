@@ -3,7 +3,7 @@ node {
 	def dockeruser = "ugaurav22"
 	environment {
 			registry = "https://hub.docker.com/repository/docker/ugaurav22/"
-			registryCredential = 'ugaurav22'
+			registryCredential = 'DockerHubCredentials'
 			dockerImage = ''
 	}
 	stage('Clone repository') {
