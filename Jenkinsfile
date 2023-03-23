@@ -1,9 +1,7 @@
 node {
 	def application = "springbootapp"
 	def dockerImageId = ""
-	environment {
-	    DOCKERHUB_CREDENTIALS = credentials('DockerHubCredentials')
-	  }
+
 	stage('Clone repository') {
 		checkout scm
 	}
@@ -13,12 +11,11 @@ node {
 		app = docker.build("${application}:${BUILD_NUMBER}")
 	}
 
-    	stage('Login') {
-			sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-    	}
     	stage('Push') {
-			sh 'docker push ugaurav22/${application}:${BUILD_NUMBER}'
-			sh 'docker logout'
+		docker.withRegistry('ugaurav22', 'DockerHubCredentials') {
+           			 app.push("${application}:${BUILD_NUMBER}")
+            			app.push("latest")
+       		 }
     	}
 	stage('Deploy') {
 		sh ("docker run -d -p 81:8080 -v /var/log/:/var/log/ ${application}:${BUILD_NUMBER}")		
