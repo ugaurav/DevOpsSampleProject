@@ -1,7 +1,9 @@
 node {
 	def application = "springbootapp"
 	def dockerImageId = ""
-
+	environment {
+	    DOCKERHUB_CREDENTIALS = credentials('DockerHubCredentials')
+	  }
 	stage('Clone repository') {
 		checkout scm
 	}
