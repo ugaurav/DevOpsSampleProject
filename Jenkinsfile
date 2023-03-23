@@ -28,8 +28,8 @@ node {
 			}
     		}*/
 		withDockerRegistry([credentialsId:"DockerHubCredentials",url:"https://registry.hub.docker.com"]) {
-           			app.tag("ugaurav22/${application}:${BUILD_NUMBER}")
-			        app.push()
+           		sh 'docker tag ${application}:${BUILD_NUMBER} ugaurav22/${application}:${BUILD_NUMBER}'	
+			sh 'docker push ugaurav22/${application}:${BUILD_NUMBER}'
 
        		 }
 	}	
