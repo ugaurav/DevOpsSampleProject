@@ -20,9 +20,9 @@ pipeline {
       steps{ 
 	bash '''
             #!/bin/bash
-            echo "hello world"
+            echo "hello world | echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
          '''      
-	sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                 
+	//sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                 
 	echo 'Login Completed'                
       }           
     }               
