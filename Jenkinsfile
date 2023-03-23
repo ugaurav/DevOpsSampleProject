@@ -28,7 +28,7 @@ node {
 			}
     		}*/
 		withDockerRegistry([credentialsId:"DockerHubCredentials",url:"https://registry.hub.docker.com"]) {
-           		sh 'docker tag ${application}:${BUILD_NUMBER} ugaurav22/${application}:${BUILD_NUMBER}'	
+           		sh 'docker tag "${application}:${BUILD_NUMBER}" "ugaurav22/${application}:${BUILD_NUMBER}"'	
 			sh 'docker push ugaurav22/${application}:${BUILD_NUMBER}'
 
        		 }
