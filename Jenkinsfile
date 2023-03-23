@@ -27,7 +27,7 @@ node {
 			}
     		}*/
 		sh 'docker logout'
-		sh 'echo docker $DOCKERHUB_CREDENTIALS_PSW'
+		sh 'echo "docker" $DOCKERHUB_CREDENTIALS_PSW'
 		sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 		/*withDockerRegistry([credentialsId:"DockerHubCredentials",url:"https://index.docker.io/v2/"]) {
            		//sh 'docker tag springbootapp:${BUILD_NUMBER} ugaurav22/springbootapp:${BUILD_NUMBER}'	
