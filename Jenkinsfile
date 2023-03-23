@@ -12,7 +12,7 @@ node {
 	
 
 	stage('Build image') {
-		app = docker.build("ugaurav22/${application}:${BUILD_NUMBER}")
+		app = docker.build("${application}:${BUILD_NUMBER}")
 	}
 
     	stage('Push') {
@@ -28,7 +28,8 @@ node {
 			}
     		}*/
 		withDockerRegistry([credentialsId:"DockerHubCredentials",url:"https://registry.hub.docker.com"]) {
-           			app.push()
+           			app.tag("ugaurav22/${application}:${BUILD_NUMBER}")
+			        app.push()
 
        		 }
 	}	
