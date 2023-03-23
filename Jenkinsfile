@@ -9,7 +9,7 @@ pipeline {
      }
     stage('Build Docker Image') {         
       steps{                
-	sh 'docker build -t ugaurav22/springbooapp:$BUILD_NUMBER .'           
+	sh 'docker build -t ugaurav22/springbootapp:$BUILD_NUMBER .'           
         echo 'Build Image Completed'                
       }           
     }
@@ -23,7 +23,7 @@ pipeline {
     }               
     stage('Push Image to Docker Hub') {         
       steps{                            
-	sh ' docker push ugaurav22/springbooapp:$BUILD_NUMBER' 
+	sh ' docker push ugaurav22/springbootapp:$BUILD_NUMBER' 
       echo 'Push Image Completed'       
       }           
     }      
