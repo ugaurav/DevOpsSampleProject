@@ -12,8 +12,8 @@ node {
 	}
 
     	stage('Push') {
-		docker.withRegistry('https://hub.docker.com/repository/docker/ugaurav22', 'DockerHubCredentials') {
-           			 app.push("${application}:${BUILD_NUMBER}")
+		docker.withRegistry('https://hub.docker.com/repository/docker', 'DockerHubCredentials') {
+           			 app.push("ugaurav22/${application}:${BUILD_NUMBER}")
             			app.push("latest")
        		 }
     	}
