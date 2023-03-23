@@ -1,6 +1,6 @@
 node {
 	def application = "springbootapp"
-	def dockerImageId = ""
+	def dockeruser = "ugaurav22"
 
 	stage('Clone repository') {
 		checkout scm
@@ -12,7 +12,7 @@ node {
 	}
 
     	stage('Push') {
-		docker.withRegistry('https://hub.docker.com/repository/docker', 'DockerHubCredentials') {
+		docker.withRegistry('https://hub.docker.com/repositories/', 'DockerHubCredentials') {
            			 app.push("ugaurav22/${application}:${BUILD_NUMBER}")
             			app.push("latest")
        		 }
