@@ -31,9 +31,10 @@ node {
 		sh 'docker logout'
 		withDockerRegistry([credentialsId:"DockerHubCredentials",url:"https://index.docker.io/v2/"]) {
            		//sh 'docker tag springbootapp:${BUILD_NUMBER} ugaurav22/springbootapp:${BUILD_NUMBER}'	
-			sh 'docker push ugaurav22/springbootapp:${BUILD_NUMBER}'
+			//sh 'docker push ugaurav22/springbootapp:${BUILD_NUMBER}'
 
        		 }
+		sh 'docker push ugaurav22/springbootapp:${BUILD_NUMBER}'
 	}	
 	stage('Deploy') {
 		sh ("docker run -d -p 81:8080 -v /var/log/:/var/log/ ${application}:${BUILD_NUMBER}")		
