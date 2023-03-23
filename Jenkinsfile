@@ -26,6 +26,7 @@ node {
 			dockerImage.push()
 			}
     		}
+	}	
 	stage('Deploy') {
 		sh ("docker run -d -p 81:8080 -v /var/log/:/var/log/ ${application}:${BUILD_NUMBER}")		
 	}
